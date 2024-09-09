@@ -26,7 +26,7 @@ int main()
     }
 
     int numero;
-    bool encontrado = false; // 
+    bool encontrado = false; 
     cout << "Ingrese el numero a buscar en la matriz: ";
     cin >> numero;
 
