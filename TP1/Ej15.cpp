@@ -16,7 +16,6 @@ int main()
     cin >> columnas;
     int matriz[filas][columnas];
 
-    // Llenar la matriz
     cout << "Ingrese los numeros de la matriz:" << endl;
     for (int i = 0; i < filas; i++)
     {
