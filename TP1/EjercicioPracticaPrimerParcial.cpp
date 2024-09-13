@@ -51,11 +51,11 @@ void imprimirListado(int matriz[Filas][Columnas], int dl)
     cout << "Listado de productos:" << endl;
     for(int i = 0; i < dl; i++)
     {
-        cout << "Codigo del producto: " << matriz[i][0] << endl;
+        cout << "Codigo del producto: #" << matriz[i][0] << endl;
         cout << "--------------------" << endl;
         cout << "Stock del producto: " << matriz[i][1] << endl;
         cout << "--------------------" << endl;
-        cout << "Precio del producto: " << matriz[i][2] << endl;
+        cout << "Precio del producto: $" << matriz[i][2] << endl;
         cout << "--------------------" << endl;
     }
 }
@@ -87,8 +87,6 @@ void modificarPrecio(int matriz[Filas][Columnas], int dl)
     cout << "Ingrese el codigo del producto: ";
     cin >> codigo;
     
-    
-
     for (int i = 0; i < dl; i++)
     {
         if (matriz[i][0] == codigo)
@@ -124,7 +122,8 @@ void modificarPrecio(int matriz[Filas][Columnas], int dl)
         }
     }
 
-    if (!encontrado) {
+    if (!encontrado)
+    {
         cout << "El codigo no se encuentra en la lista." << endl;
     }
 }
