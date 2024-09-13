@@ -115,7 +115,7 @@ void modificarPrecio(int matriz[Filas][Columnas], int dl)
             }
             else
             {
-                cout << "Opción inválida. Por favor, ingrese 1 para incrementar o 0 para disminuir." << endl;
+                cout << "Opcion invalida. Por favor, ingrese 1 para incrementar o 0 para disminuir." << endl;
             }
 
             break; // Una vez que el producto ha sido encontrado y procesado, salimos del bucle.
