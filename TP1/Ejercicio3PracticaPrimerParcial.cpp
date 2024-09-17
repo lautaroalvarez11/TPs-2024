@@ -3,6 +3,7 @@
 using namespace std;
 
 /*
+PARTE 1:
 Construir un sistema para la gestión de datos de un campeonato de burako.
 Se requiere registrar sobre una tabla, los puntos obtenidos por cada equipo en cada partida de juego.
 Se jugarán 3 partidas por equipo y los grupos estarán conformados por 4 jugadores.
@@ -149,3 +150,36 @@ int main()
 
 	return 0;
 }
+
+/*
+PARTE 2:
+1. Dado el siguiente arreglo de números enteros:
+    int numeros[150] = {2,4,3,6,8,7,10,9};
+    ¿Cuál es la dimensión física? ¿Y la dimensión lógica?
+    RESPUESTA:
+    - Dimensión física: 150
+    - Dimensión lógica: 8
+2. Describir que hace la siguiente función:
+    void funcion(int arreglo[], int dl)
+    {
+        for(int i = dl-1; i >= 0; i--)
+        {
+            cout << arreglo[i] << " ";
+        }
+    }
+    RESPUESTA:
+    - Imprime el arreglo de adelante para atrás
+    - 9 10 7 8 6 3 4 2
+3. Dado un arreglo llamado "nuevoArreglo" y su dimensión lógica "dl":
+    ¿Cuál es la sentencia correcta para mostrar por pantalla el último elemento útil del arreglo?
+    RESPUESTA:
+    int nuevoArreglo[];
+    int dl;
+    for(int i = 0; i < dl; i++)
+    {
+        if(nuevoArreglo[i] == nuevoArreglo[dl-1])
+        {
+            cout << nuevoArreglo[i];
+        }
+    }
+*/
