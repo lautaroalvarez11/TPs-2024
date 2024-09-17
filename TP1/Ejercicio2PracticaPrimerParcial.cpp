@@ -46,15 +46,16 @@ void determinarPosicion(int matriz[Vueltas][Pilotos])
     int sumaTiempos[Pilotos] = {0};
     int posiciones[Pilotos] = {0, 1, 2};
 
-    // Sumar los tiempos de cada piloto
+    // Sumar los tiempos de cada piloto (corregido)
     for (int i = 0; i < Pilotos; i++)
     {
         for (int j = 0; j < Vueltas; j++)
         {
-            sumaTiempos[i] += matriz[i][j];
+            sumaTiempos[i] += matriz[j][i];
         }
     }
 
+    // Ordenar los tiempos y las posiciones usando burbuja
     for (int i = 0; i < Pilotos - 1; i++)
     {
         for (int j = 0; j < Pilotos - i - 1; j++)
@@ -74,32 +75,33 @@ void determinarPosicion(int matriz[Vueltas][Pilotos])
         }
     }
 
+    // Imprimir las posiciones finales
     cout << "Posiciones finales de largada:" << endl;
     for (int i = 0; i < Pilotos; i++)
     {
-        cout << "El piloto " << posiciones[i] + 1 << " larga en la posicion " << i + 1 << " con un tiempo total de " << sumaTiempos[posiciones[i]] << " minutos." << endl;
+        cout << "El piloto " << posiciones[i] + 1 << " larga en la posición " << i + 1 << " con un tiempo total de " << sumaTiempos[i] << " minutos." << endl;
     }
 }
 
 void mejorRendimiento(int matriz[Vueltas][Pilotos])
 {
-    for (int j = 0; j < Pilotos; j++)
+    for (int piloto = 0; piloto < Pilotos; piloto++)
     {
-        int mejorTiempo = matriz[0][j];  // Suponer que el mejor tiempo es el de la primera vuelta
+        int mejorTiempo = matriz[0][piloto];  // Suponer que el mejor tiempo es el de la primera vuelta
         int mejorVuelta = 0;  // Guardar el índice de la mejor vuelta
 
         // Comparar el tiempo de cada vuelta para cada piloto
-        for (int i = 1; i < Vueltas; i++)
+        for (int vuelta = 1; vuelta < Vueltas; vuelta++)
         {
-            if (matriz[i][j] < mejorTiempo)
+            if (matriz[vuelta][piloto] < mejorTiempo)
             {
-                mejorTiempo = matriz[i][j];  // Actualizar el mejor tiempo
-                mejorVuelta = i;  // Guardar el índice de la vuelta con mejor tiempo
+                mejorTiempo = matriz[vuelta][piloto];  // Actualizar el mejor tiempo
+                mejorVuelta = vuelta;  // Guardar el índice de la vuelta con mejor tiempo
             }
         }
 
         // Imprimir el resultado para el piloto actual
-        cout << "El piloto " << j + 1 << " tuvo su mejor rendimiento en la vuelta " << mejorVuelta + 1 << " con un tiempo de " << mejorTiempo << " minutos." << endl;
+        cout << "El piloto " << piloto + 1 << " tuvo su mejor rendimiento en la vuelta " << mejorVuelta + 1 << " con un tiempo de " << mejorTiempo << " minutos." << endl;
     }
 }
 
