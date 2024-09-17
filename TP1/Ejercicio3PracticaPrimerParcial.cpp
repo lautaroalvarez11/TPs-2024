@@ -11,11 +11,11 @@ En la tabla, cada fila corresponde a una partida y las columnas representan a un
 El valor de cada celda, indica el puntaje obtenido en una partida por un jugador.
 La siguiente tabla es a modo de ejemplo:
 
- Partida/Jugador |  Jugador 1  |   Piloto 2  |  Piloto 3  |   Piloto 4
------------------|-------------|-------------|------------|-------------
-    Partida 1    |     325     |     -220    |     130    |     410
-    Partida 2    |     90      |     230     |     380    |     -205
-    Partida 3    |     110     |     310     |     -90    |     150
+ Partida/Jugador |  Jugador 1  |   Jugador 2  |  Jugador 3  |  Jugador 4
+-----------------|-------------|--------------|-------------|-------------
+    Partida 1    |     325     |     -220     |     130     |     410
+    Partida 2    |     90      |      230     |     380     |    -205
+    Partida 3    |     110     |      310     |    -90      |     150
 
 1. Cargar los resultados de un grupo participante del torneo sobre una matriz 3x4.
 2. Imprimir en pantalla el resultado final de cada jugador después de las tres partidas.
