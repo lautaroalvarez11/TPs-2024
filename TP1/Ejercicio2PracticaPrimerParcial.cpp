@@ -19,10 +19,10 @@ En un equipo de Fórmula 1 utilizan tablas para ver el rendimiento de sus piloto
 */
 
 const int dimFis = 9;
-const int Vueltas = 3;
-const int Pilotos = 3;
+const int Vueltas = 3; // Filas
+const int Pilotos = 3; // Columnas
 
-void cargarResultados(int matriz[Vueltas][Pilotos], int &dl)
+void cargarResultados(int matriz[Vueltas][Pilotos], int dl)
 {
     if(dl == dimFis)
     {
@@ -30,34 +30,136 @@ void cargarResultados(int matriz[Vueltas][Pilotos], int &dl)
         return;
     }
 
-    for(int i = dl; i < Vueltas; i++)
+    for (int i = 0; i < Vueltas; i++)
     {
-        cout << "Ingrese resultado de minuto en la vuelta " << i << " del piloto " << i << " : ";
-        cin >> matriz[i][0];
-        cout << "Ingrese resultado de minuto en la vuelta " << i << " del piloto " << i << " : ";
-        cin >> matriz[i][1];
-        cout << "Ingrese resultado de minuto en la vuelta " << i << " del piloto " << i << " : ";
-        cin >> matriz[i][2];
-        dl++;
+        for (int j = 0; j < Pilotos; j++)
+        {
+            cout << "Ingrese tiempo de la vuelta " << i + 1 << " del piloto " << j + 1 << ": ";
+            cin >> matriz[i][j];
+            dl++;
+        }
     }
 }
 
-void determinarPosicion(int matriz[Vueltas][Pilotos], int &dl)
+void determinarPosicion(int matriz[Vueltas][Pilotos])
 {
-    int PosicionPiloto1;
-    for(int i = 0; i < Vueltas; i++)
+    int sumaTiempos[Pilotos] = {0};
+    int posiciones[Pilotos] = {0, 1, 2};
+
+    // Sumar los tiempos de cada piloto
+    for (int i = 0; i < Pilotos; i++)
     {
-        for(int j = 0; j < Pilotos; j++)
+        for (int j = 0; j < Vueltas; j++)
         {
-            
-            
+            sumaTiempos[i] += matriz[i][j];
         }
     }
+
+    for (int i = 0; i < Pilotos - 1; i++)
+    {
+        for (int j = 0; j < Pilotos - i - 1; j++)
+        {
+            if (sumaTiempos[j] > sumaTiempos[j + 1])
+            {
+                // Intercambiar tiempos
+                int tiempoTemporal = sumaTiempos[j];
+                sumaTiempos[j] = sumaTiempos[j + 1];
+                sumaTiempos[j + 1] = tiempoTemporal;
+                
+                // Intercambiar posiciones
+                int posicionTemporal = posiciones[j];
+                posiciones[j] = posiciones[j + 1];
+                posiciones[j + 1] = posicionTemporal;
+            }
+        }
+    }
+
+    cout << "Posiciones finales de largada:" << endl;
+    for (int i = 0; i < Pilotos; i++)
+    {
+        cout << "El piloto " << posiciones[i] + 1 << " larga en la posicion " << i + 1 << " con un tiempo total de " << sumaTiempos[posiciones[i]] << " minutos." << endl;
+    }
+}
+
+void mejorRendimiento(int matriz[Vueltas][Pilotos])
+{
+    for (int j = 0; j < Pilotos; j++)
+    {
+        int mejorTiempo = matriz[0][j];  // Suponer que el mejor tiempo es el de la primera vuelta
+        int mejorVuelta = 0;  // Guardar el índice de la mejor vuelta
+
+        // Comparar el tiempo de cada vuelta para cada piloto
+        for (int i = 1; i < Vueltas; i++)
+        {
+            if (matriz[i][j] < mejorTiempo)
+            {
+                mejorTiempo = matriz[i][j];  // Actualizar el mejor tiempo
+                mejorVuelta = i;  // Guardar el índice de la vuelta con mejor tiempo
+            }
+        }
+
+        // Imprimir el resultado para el piloto actual
+        cout << "El piloto " << j + 1 << " tuvo su mejor rendimiento en la vuelta " << mejorVuelta + 1 << " con un tiempo de " << mejorTiempo << " minutos." << endl;
+    }
+}
+
+void menu(int matriz[Vueltas][Pilotos], int &dl)
+{
+    char opciones;
+    do
+    {
+        cout << "Bienvenido al sistema de Formula 1" << endl;
+        cout << "A. Cargar tiempos de vuelta de cada piloto." << endl;
+        cout << "B. Mostrar posicion de largada de cada piloto." << endl;
+        cout << "C. Mostrar vuelta de mejor rendimiento." << endl;
+        cout << "D. Salir" << endl;
+        cout << "Elija una opcion: ";
+        cin >> opciones;
+
+        switch(opciones)
+        {
+            case 'a':
+            case 'A':
+            {
+                cargarResultados(matriz, dl);
+                break;
+            }
+
+            case 'b':
+            case 'B':
+            {
+                determinarPosicion(matriz);
+                break;
+            }
+
+            case 'c':
+            case 'C':
+            {
+                mejorRendimiento(matriz);
+                break;
+            }
+
+            case 'd':
+            case 'D':
+            {
+                cout << "Saliendo del sistema.";
+                break;
+            }
+
+            default:
+            {
+                cout << "Opcion no valida, ingrese de nuevo";
+                break;
+            }
+        }
+    } while (opciones != 'd' && opciones != 'D');
 }
 
 int main()
 {
     int matriz[Vueltas][Pilotos], dl = 0;
+
+    menu(matriz, dl);
 
     return 0;
 }
