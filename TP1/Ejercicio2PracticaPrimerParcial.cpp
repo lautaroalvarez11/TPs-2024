@@ -11,11 +11,11 @@ En un equipo de Fórmula 1 utilizan tablas para ver el rendimiento de sus piloto
     Vuelta 2   |     4      |      5      |     6
     Vuelta 3   |     7      |      8      |     9
 
-1. Cargar los resultados en una matriz 3x3
+1. Cargar los resultados en una matriz 3x3.
 2. Imprimir en pantalla la posición final de largada de cada piloto despues de 3 vueltas.
    (La posición de largada se determina sumando los tiempos de las 3 vueltas. El piloto con menor
    tiempo larga primero, el que le sigue en tiempo segundo y así sucesivamente)
-3. Imprimir en pantalla en que vuelta cada piloto tuvo su mejor desempeño
+3. Imprimir en pantalla en que vuelta cada piloto tuvo su mejor desempeño.
 */
 
 const int dimFis = 9;
@@ -46,7 +46,7 @@ void determinarPosicion(int matriz[Vueltas][Pilotos])
     int sumaTiempos[Pilotos] = {0};
     int posiciones[Pilotos] = {0, 1, 2};
 
-    // Sumar los tiempos de cada piloto (corregido)
+    // Sumar los tiempos de cada piloto
     for (int i = 0; i < Pilotos; i++)
     {
         for (int j = 0; j < Vueltas; j++)
@@ -55,7 +55,7 @@ void determinarPosicion(int matriz[Vueltas][Pilotos])
         }
     }
 
-    // Ordenar los tiempos y las posiciones usando burbuja
+    // Ordenar los tiempos y las posiciones
     for (int i = 0; i < Pilotos - 1; i++)
     {
         for (int j = 0; j < Pilotos - i - 1; j++)
@@ -91,7 +91,7 @@ void mejorRendimiento(int matriz[Vueltas][Pilotos])
         int mejorVuelta = 0;  // Guardar el índice de la mejor vuelta
 
         // Comparar el tiempo de cada vuelta para cada piloto
-        for (int vuelta = 1; vuelta < Vueltas; vuelta++)
+        for (int vuelta = 1; vuelta < Vueltas; vuelta++) // Comparar desde el segundo piloto
         {
             if (matriz[vuelta][piloto] < mejorTiempo)
             {
@@ -105,7 +105,7 @@ void mejorRendimiento(int matriz[Vueltas][Pilotos])
     }
 }
 
-void menu(int matriz[Vueltas][Pilotos], int &dl)
+void menu(int matriz[Vueltas][Pilotos], int dl)
 {
     char opciones;
     do
