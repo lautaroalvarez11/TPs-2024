@@ -18,7 +18,7 @@ const int dimFis = 12;
 
 void cargarResultados(int matriz[Partidas][Jugadores], int dl)
 {
-    if(dl <= dimFis)
+    if(dl == dimFis)
     {
         cout << "Todos los puntos cargados";
         return;

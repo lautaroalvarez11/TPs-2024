@@ -24,7 +24,7 @@ const int Pilotos = 3; // Columnas
 
 void cargarResultados(int matriz[Vueltas][Pilotos], int dl)
 {
-    if(dl <= dimFis)
+    if(dl == dimFis)
     {
         cout << "Tabla con pilotos llena.";
         return;
