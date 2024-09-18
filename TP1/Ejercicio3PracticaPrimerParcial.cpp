@@ -66,8 +66,7 @@ void mostrarPuntaje(int matriz[Partidas][Jugadores])
 
 void ganadorFinal(int matriz[Partidas][Jugadores])
 {
-	int sumaPuntajeFinal[Jugadores] = {0};
-    int indiceGanador;
+	int sumaPuntajeFinal[Jugadores] = {0}, indiceGanador;
 
     for (int i = 0; i < Jugadores; i++)
     {
