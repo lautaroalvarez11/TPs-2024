@@ -21,7 +21,7 @@ int const Columnas = 3;
 
 void cargarProducto(int matriz[Filas][Columnas], int &dl)
 {
-    if(dl == Filas)
+    if(dl <= Filas)
     {
         cout << "No se puede agregar más elementos a la tienda";
     }
