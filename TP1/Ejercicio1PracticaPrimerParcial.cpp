@@ -96,7 +96,7 @@ void modificarPrecio(int matriz[Filas][Columnas], int dl)
             if (porcentaje < 0)
             {
                 cout << "El porcentaje debe ser un valor positivo." << endl;
-                return; // Termina la función si el porcentaje es inválido.
+                return; // Terminar la función si el porcentaje no es válido.
             }
 
             encontrado = true;
@@ -118,7 +118,7 @@ void modificarPrecio(int matriz[Filas][Columnas], int dl)
                 cout << "Opcion invalida. Por favor, ingrese 1 para incrementar o 0 para disminuir." << endl;
             }
 
-            break; // Una vez que el producto ha sido encontrado y procesado, salimos del bucle.
+            break; // Una vez que el producto fue encontrado y procesado, salir del bucle.
         }
     }
 
@@ -128,9 +128,8 @@ void modificarPrecio(int matriz[Filas][Columnas], int dl)
     }
 }
 
-int main()
+void menu(int matriz[Filas][Columnas], int dl)
 {
-    int matriz[Filas][Columnas], dl = 0;
     char opciones;
 
     do
@@ -189,6 +188,13 @@ int main()
             }
         }
     } while(opciones != 'e' && opciones != 'E');
+}
+
+int main()
+{
+    int matriz[Filas][Columnas], dl = 0;
+    
+    menu(matriz, dl);
 
     return 0;
 }
