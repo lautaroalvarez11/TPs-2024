@@ -52,7 +52,31 @@ void buscarColor(string colores[], int dl)
     }
 }
 
-void menu(string colores[], int &dl)
+/*
+FUNCIÓN PROPUESTA EN PDF DE TEORÍA:
+int busquedaSecuencialDesordenada(string colores[], int dl, string colorBuscado)
+{
+    int i = 0;
+    
+    cout << "Ingrese el color a buscar: ";
+    cin >> colorBuscado;
+
+    while (i < dl && colores[i] != colorBuscado)
+    {
+        i++;
+    }
+    if (i < dl)
+    {
+        return i;
+    }
+    else
+    {
+        return -1;
+    }
+}
+*/
+
+void menu(string colores[], int dl)
 {
     char opciones;
     do
@@ -98,7 +122,7 @@ void menu(string colores[], int &dl)
 
 int main()
 {
-    string colores[dimFis]; // Arreglo de colores
+    string colores[dimFis], colorBuscado; // Arreglo de colores y variable para buscar el color
     int dl = 0; // Dimensión lógica inicializada en 0
 
     menu(colores, dl); // Llama al menú principal
