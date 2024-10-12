@@ -25,16 +25,19 @@ const int dimFisAlumnos = 1000;
 
 void cargarAlumno(Alumno alumnos[], int &dl)
 {
-    if (dl >= dimFisAlumnos) {
+    if (dl >= dimFisAlumnos)
+    {
         cout << "Sistema lleno" << endl;
         return;
     }
 
-    for (int i = dl; i < dimFisAlumnos; i++) {
+    for (int i = dl; i < dimFisAlumnos; i++)
+    {
         cout << "Ingrese el nombre del alumno ('Fin' para finalizar): ";
         getline(cin >> ws, alumnos[i].nombre);
 
-        if (alumnos[i].nombre == "Fin") {
+        if (alumnos[i].nombre == "Fin")
+        {
             cout << "Finalizando la carga..." << endl;
             break;
         }
