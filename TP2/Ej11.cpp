@@ -254,7 +254,7 @@ void menu(Ciudadano ciudadanos[], int &dl)
         cout << "A. Cargar ciudadanos al listado" << endl;
         cout << "B. Imprimir listado completo" << endl;
         cout << "C. Imprimir listado de ciudadanos masculinos" << endl;
-        cout << "D. imprimir listado de ciudadanas femeninas" << endl;
+        cout << "D. Imprimir listado de ciudadanas femeninas" << endl;
         cout << "E. Salir" << endl;
         cout << "Ingrese una opcion: ";
         cin >> opciones;

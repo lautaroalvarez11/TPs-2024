@@ -108,10 +108,113 @@ void cargarInformacion(Empleado empleados[], int &dlEmpleados, Sucursal sucursal
     }
 }
 
+void informarNombreEmpleado(Empleado empleados[], int dl)
+{
+    int legajoTemporal;
+    cout << "Ingrese el legajo del empleado a buscar: ";
+    cin >> legajoTemporal;
+    bool encontrado = false;
 
+    for(int i = 0; i < dl; i++)
+    {
+        if(empleados[i].legajoEmpleado == legajoTemporal)
+        {
+            encontrado = true;
+            cout << "Nombre del empleado:  " << empleados[i].nombreEmpleado << endl;
+            break;
+        }
+    }
+    
+    if(!encontrado)
+    {
+        cout << "El legajo ingresado no pertenece a ningun empleado" << endl;
+    }
+}
+
+void informarEncargadoSucursal(Sucursal sucursales[], int dlSucursal, Empleado empleados[], int dlEmpleados)
+{
+    cout << "Listado de sucursales y sus encargados:" << endl;
+    for (int i = 0; i < dlSucursal; i++)
+    {
+        cout << "Sucursal: " << sucursales[i].nombreSucursal << " - Encargado: ";
+        
+        // Buscar el nombre del encargado según su legajo
+        bool encargadoEncontrado = false;
+        for (int j = 0; j < dlEmpleados; j++)
+        {
+            if (sucursales[i].legajoEncargado == empleados[j].legajoEmpleado)
+            {
+                cout << empleados[j].nombreEmpleado << endl;
+                encargadoEncontrado = true;
+                break;
+            }
+        }
+
+        if (!encargadoEncontrado) {
+            cout << "Encargado no encontrado." << endl;
+        }
+    }
+}
+
+void menu(Empleado empleados[], Sucursal sucursales[], int dlEmpleado, int dlSucursal)
+{
+    char opciones;
+    do
+    {
+        cout << "Bienvenido al sistema de sucursales" << endl;
+        cout << "A. Cargar datos del empleado y sucursales" << endl;
+        cout << "B. Buscar nombre de empleado por legajo" << endl;
+        cout << "C. Imprimir sucursales con su empleado encargado" << endl;
+        cout << "D. Salir" << endl;
+        cout << "Ingrese una opcion: ";
+        cin >> opciones;
+
+        switch(opciones)
+        {
+            case 'A':
+            case 'a':
+            {
+                cargarInformacion(empleados, dlEmpleado, sucursales, dlSucursal);
+                break;
+            }
+
+            case 'B':
+            case 'b':
+            {
+                informarNombreEmpleado(empleados, dlEmpleado);
+                break;
+            }
+
+            case 'C':
+            case 'c':
+            {
+                informarEncargadoSucursal(sucursales, dlSucursal, empleados, dlEmpleado);
+                break;
+            }
+
+            case 'D':
+            case 'd':
+            {
+                cout  << "Gracias por utilizar el sistema" << endl;
+                break;
+            }
+
+            default:
+            {
+                cout << "Ingrese una opcion valida" << endl;
+                break;
+            }
+        }
+    } while(opciones != 'D' && opciones != 'd');
+}
 
 int main()
 {
+        Empleado empleados[MAX_EMPLEADOS];
+        Sucursal sucursales[MAX_SUCURSALES];
+        int dlEmpleado = 0,  dlSucursal = 0;
+
+        menu(empleados, sucursales, dlEmpleado, dlSucursal);
 
     return 0;
 }
