@@ -150,7 +150,8 @@ void informarEncargadoSucursal(Sucursal sucursales[], int dlSucursal, Empleado e
             }
         }
 
-        if (!encargadoEncontrado) {
+        if (!encargadoEncontrado)
+        {
             cout << "Encargado no encontrado." << endl;
         }
     }
