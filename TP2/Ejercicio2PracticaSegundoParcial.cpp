@@ -155,6 +155,9 @@ struct Equipo
     int puntajes[10];
 };
 1) Declarar un arreglo para almacenar todos los equipos que participan en el torneo. El cupo es de 30 equipos.
+    Solución:
+    Equipo equipos[30];
+
 2) Completar el código de la función que muestra el puntaje total de todos los equipos participantes. Las líneas de punto son solo ilustrativas, no indica la cantidad de sentencias.
 void listado(Equipo arreglo[], int dl)
 {
@@ -168,4 +171,15 @@ void listado(Equipo arreglo[], int dl)
         cout << "Puntaje: ";
     }
 }
+    Solución:
+    cout << "Equipo: " << arreglo[i].nombre << endl;
+    cout << "Cantidad de participantes: " << arreglo[i].cant_Participantes << endl;
+    int puntajeTotal = 0;
+
+    for(int j = 0; j < 10; j++)
+    {
+        puntajeTotal += arreglo[i].puntajes[j];
+    }
+
+    cout << "Puntaje total: " << puntajeTotal << endl;
 */
