@@ -12,130 +12,79 @@ Por último, eliminar a la alumna "Josefina Ortega" de la lista (se asume que no
 
 struct Nodo
 {
-    string dato;
+    string nombre;
     Nodo* siguiente;
 };
 
-void cargarNombres(Nodo* &cabeza)
+void cargarNombre(Nodo* &inicio)
 {
-    string nombre;
-    cout << "Ingrese el nombre de un alumno ('x' para terminar): ";
-    while (getline(cin >> ws, nombre) && nombre != "x" && nombre != "X")
+    string nombreAlumno;
+    cout << "Ingrese el nombre del alumno ('x' para finalizar): ";
+    while(getline(cin >> ws, nombreAlumno) && nombreAlumno != "x" && nombreAlumno != "X")
     {
-        Nodo* nuevoNodo = new Nodo();
-        nuevoNodo -> dato = nombre;
+        Nodo* nuevoNodo = new Nodo;
+        nuevoNodo -> nombre = nombreAlumno;
         nuevoNodo -> siguiente = nullptr;
 
-        if (cabeza == nullptr)
+        if(inicio == nullptr)
         {
-            cabeza = nuevoNodo;
+            inicio = nuevoNodo;
         }
         else
         {
-            Nodo* actual = cabeza;
-            while (actual -> siguiente != nullptr)
+            Nodo* aux = inicio;
+            while(aux -> siguiente != nullptr)
             {
-                actual = actual -> siguiente;
+                aux = aux -> siguiente;
             }
-            actual -> siguiente = nuevoNodo;
+            aux -> siguiente = nuevoNodo; 
         }
-        
-        cout << "Ingrese el nombre de un alumno ('x' para terminar): ";
+        cout << "Ingrese el nombre del alumno ('x' para finalizar): ";
     }
 }
 
-void mostrarLista(Nodo* cabeza)
+void imprimirLista(Nodo* inicio)
 {
-    Nodo* actual = cabeza;
-    while (actual != nullptr)
-    {
-        cout << actual -> dato << " -> ";
-        actual = actual -> siguiente;
-    }
-    cout << "NULL" << endl;
+	Nodo* aux = inicio;
+	for(aux; aux != nullptr; aux = aux -> siguiente)
+	{
+		cout << aux -> nombre << endl;
+	}
 }
 
-void buscarNombre(Nodo* cabeza)
+void buscarAlumno(Nodo* inicio)
 {
     string nombreBuscado;
-    cout << "Ingrese el nombre de un alumno a buscar: ";
+    cout << "Ingrese el nombre a buscar: ";
     getline(cin >> ws, nombreBuscado);
 
-    Nodo* actual = cabeza;
     bool encontrado = false;
-    while (actual != nullptr)
-    {
-        if (actual -> dato == nombreBuscado)
-        {
+
+	Nodo* aux = inicio;
+	for(aux; aux != nullptr; aux = aux -> siguiente)
+	{
+		if(aux -> nombre == nombreBuscado)
+		{
             encontrado = true;
+            cout << "Alumno encontrado.";
             break;
-        }
-        actual = actual -> siguiente;
-    }
-
-    if (encontrado)
+		}
+	}
+	if(!encontrado)
     {
-        cout << nombreBuscado << " se encuentra en la lista." << endl;
-    }
-    else
-    {
-        cout << nombreBuscado << " no se encuentra en la lista." << endl;
-    }
-}
-
-void eliminarNombre(Nodo* &cabeza)
-{
-    string nombreEliminar;
-    cout << "\nIngrese el nombre de la alumna a eliminar: ";
-    getline(cin, nombreEliminar);
-
-    if (cabeza == nullptr) return;
-
-    if (cabeza->dato == nombreEliminar)
-    {
-        Nodo* temp = cabeza;
-        cabeza = cabeza->siguiente;
-        delete temp;
-        cout << nombreEliminar << " ha sido eliminado de la lista." << endl;
-    }
-    else
-    {
-        Nodo* actual = cabeza;
-        while (actual->siguiente != nullptr && actual->siguiente->dato != nombreEliminar)
-        {
-            actual = actual->siguiente;
-        }
-        if (actual->siguiente != nullptr)
-        {
-            Nodo* temp = actual->siguiente;
-            actual->siguiente = actual->siguiente->siguiente;
-            delete temp;
-            cout << nombreEliminar << " ha sido eliminado de la lista." << endl;
-        }
-        else
-        {
-            cout << nombreEliminar << " no se encuentra en la lista." << endl;
-        }
+        cout << "Alumno no encontrado.";
     }
 }
 
 int main()
 {
-    Nodo* lista = nullptr;
+    Nodo* inicio = nullptr;
 
-    cargarNombres(lista);
+    cargarNombre(inicio);
 
-    cout << "Lista de alumnos:" << endl;
-    mostrarLista(lista);
+    buscarAlumno(inicio);
 
-    buscarNombre(lista);
-
-    // Eliminar "Josefina Ortega" de la lista
-    eliminarNombre(lista);
-
-    // Mostrar lista después de la eliminación
-    cout << "\nLista de alumnos después de eliminar 'Josefina Ortega':\n";
-    mostrarLista(lista);
+    imprimirLista(inicio);
 
     return 0;
 }

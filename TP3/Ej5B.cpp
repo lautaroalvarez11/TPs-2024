@@ -28,24 +28,23 @@ void insertarAlFinal(Nodo* &inicio, int valor)
     }
     else
     {
-        Nodo* actual = inicio; // Puntero para recorrer la lista
-        while (actual -> siguiente != nullptr) // Ir hasta el último nodo
+        Nodo* aux = inicio; // Puntero para recorrer la lista
+        while (aux -> siguiente != nullptr) // Ir hasta el último nodo
         {
-            actual = actual -> siguiente;
+            aux = aux -> siguiente;
         }
-        actual -> siguiente = nuevoNodo; // El último nodo apunta al nuevo nodo
+        aux -> siguiente = nuevoNodo;
     }
 }
 
 void mostrarLista(Nodo* inicio)
 {
-    Nodo* actual = inicio; // Puntero temporal para recorrer la lista
-    while(actual != nullptr)
-    {
-        cout << actual -> dato << " -> ";
-        actual = actual -> siguiente;
-    }
-    cout << "NULL" << endl;
+	Nodo* aux = inicio;
+	for(aux; aux != nullptr; aux = aux -> siguiente)
+	{
+		cout << aux -> dato << endl;
+	}
+	cout << "NULL" << endl;	
 }
 
 int main()

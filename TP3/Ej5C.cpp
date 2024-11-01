@@ -19,7 +19,7 @@ struct Nodo
 
 void insertarOrdenado(Nodo* &inicio, int valor)
 {
-    Nodo* nuevoNodo = new Nodo(); // Crear un nuevo nodo
+    Nodo* nuevoNodo = new Nodo();
     nuevoNodo -> dato = valor;
     nuevoNodo -> siguiente = nullptr;
 
@@ -32,24 +32,24 @@ void insertarOrdenado(Nodo* &inicio, int valor)
     else
     {
         // Buscar la posición correcta
-        Nodo* actual = inicio;
-        while (actual -> siguiente != nullptr && actual -> siguiente -> dato <= valor)
+        Nodo* aux = inicio;
+        while (aux -> siguiente != nullptr && aux -> siguiente -> dato <= valor)
         {
-            actual = actual -> siguiente;
+            aux = aux -> siguiente;
         }
         // Insertar el nuevo nodo antes de la primera ocurrencia mayor al valor
-        nuevoNodo -> siguiente = actual -> siguiente;
-        actual -> siguiente = nuevoNodo;
+        nuevoNodo -> siguiente = aux -> siguiente;
+        aux -> siguiente = nuevoNodo;
     }
 }
 
 void mostrarLista(Nodo* inicio)
 {
-    Nodo* actual = inicio; // Puntero temporal para recorrer la lista
-    while(actual != nullptr)
+    Nodo* aux = inicio; // Puntero auxiliar para recorrer la lista
+    while(aux != nullptr)
     {
-        cout << actual -> dato << " -> ";
-        actual = actual -> siguiente;
+        cout << aux -> dato << " -> ";
+        aux = aux -> siguiente;
     }
     cout << "NULL" << endl;
 }

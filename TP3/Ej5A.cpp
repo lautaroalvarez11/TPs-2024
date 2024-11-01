@@ -24,13 +24,32 @@ void insertarAlInicio(Nodo* &inicio, int valor)
     inicio = nuevoNodo; // El nuevo nodo se convierte en el nuevo inicio
 }
 
+/*
+Otra variante:
+Nodo* crearNodo(int dato)
+{
+	Nodo* nuevoNodo = new Nodo; // Crear nodo
+	nuevoNodo -> dato = dato; // Asignar dato
+	nuevoNodo -> siguiente = nullptr; // Asignar siguiente
+	return nuevoNodo;
+}
+
+Nodo* insertarAlInicio(Nodo* &inicio, int dato)
+{
+	Nodo* nuevo = crearNodo(dato);
+	nuevo -> siguiente = inicio;
+	inicio = nuevo;
+	return inicio;
+}
+*/
+
 void mostrarLista(Nodo* inicio)
 {
-    Nodo* actual = inicio; // Puntero temporal para recorrer la lista
-    while(actual != nullptr)
+    Nodo* aux = inicio; // Puntero auxiliar para recorrer la lista
+    while(aux != nullptr)
     {
-        cout << actual -> dato << " -> ";
-        actual = actual -> siguiente;
+        cout << aux -> dato << " -> ";
+        aux = aux -> siguiente;
     }
     cout << "NULL" << endl;
 }
@@ -47,6 +66,6 @@ int main()
         cout << "Ingrese un numero (0 para terminar): ";
     }
 
-    mostrarLista(inicio); // Muestra la lista enlazada
+    mostrarLista(inicio);
     return 0;
 }
