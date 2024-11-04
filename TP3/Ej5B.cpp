@@ -53,10 +53,12 @@ int main()
     int valor;
 
     cout << "Ingrese un numero (0 para terminar): ";
-    while (cin >> valor && valor != 0)
+    cin >> valor;
+    while (valor != 0)
     {
         insertarAlFinal(inicio, valor);
         cout << "Ingrese un numero (0 para terminar): ";
+        cin >> valor;
     }
 
     mostrarLista(inicio); // Muestra la lista enlazada

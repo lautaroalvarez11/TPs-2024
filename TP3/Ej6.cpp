@@ -20,7 +20,9 @@ void cargarNombre(Nodo* &inicio)
 {
     string nombreAlumno;
     cout << "Ingrese el nombre del alumno ('x' para finalizar): ";
-    while(getline(cin >> ws, nombreAlumno) && nombreAlumno != "x" && nombreAlumno != "X")
+    getline(cin >> ws, nombreAlumno);
+
+    while(nombreAlumno != "x" && nombreAlumno != "X")
     {
         Nodo* nuevoNodo = new Nodo;
         nuevoNodo -> nombre = nombreAlumno;
@@ -40,6 +42,7 @@ void cargarNombre(Nodo* &inicio)
             aux -> siguiente = nuevoNodo; 
         }
         cout << "Ingrese el nombre del alumno ('x' para finalizar): ";
+        getline(cin >> ws, nombreAlumno);
     }
 }
 
@@ -66,13 +69,40 @@ void buscarAlumno(Nodo* inicio)
 		if(aux -> nombre == nombreBuscado)
 		{
             encontrado = true;
-            cout << "Alumno encontrado.";
+            cout << "Alumno encontrado." << endl;
             break;
 		}
 	}
 	if(!encontrado)
     {
-        cout << "Alumno no encontrado.";
+        cout << "Alumno no encontrado." << endl;
+    }
+}
+
+void eliminarAlumnos(Nodo* &inicio, string alumnoEliminar)
+{
+    Nodo* aEliminar;
+    Nodo* aux = inicio;
+
+    while(aux != nullptr)
+    {
+        if(inicio -> nombre == alumnoEliminar) // Si el primer elemento es el alumno a eliminar
+        {
+            aEliminar = inicio; // Guardar en aEliminar el primer elemento
+            aux = aux -> siguiente; // Auxiliar cambia de posición porque arrancó desde el inicio
+            inicio = inicio -> siguiente; // El inicio se modifica y pasa a ser el siguiente elemento
+            delete aEliminar; // Se elimina el primer elemento
+        }
+        else if(aux -> siguiente != nullptr && aux -> siguiente -> nombre == alumnoEliminar) // Si auxiliar no llegó al final de la lista y el siguiente elemento que le sigue al apuntado por auxiliar es el alumno a eliminar
+        {
+            aEliminar = aux -> siguiente; // aEliminar apunta al siguiente del apuntado por auxiliar
+            aux -> siguiente = aux -> siguiente -> siguiente; // Auxiliar apunta al siguiente de su siguiente
+            delete aEliminar; // Se elimina el elemento apuntado por auxiliar en un principio
+        }
+        else
+        {
+            aux = aux -> siguiente;
+        }
     }
 }
 
@@ -80,10 +110,18 @@ int main()
 {
     Nodo* inicio = nullptr;
 
+    string alumnoEliminar = "Josefina Ortega";
+
     cargarNombre(inicio);
 
     buscarAlumno(inicio);
 
+    cout << "Lista completa de alumnos:" << endl;
+    imprimirLista(inicio);
+
+    eliminarAlumnos(inicio, alumnoEliminar);
+
+    cout << "Lista de alumnos despues de eliminar a " << alumnoEliminar << ":" << endl;
     imprimirLista(inicio);
 
     return 0;
