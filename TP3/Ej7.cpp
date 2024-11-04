@@ -167,7 +167,7 @@ int main()
     cout << "Listas de Pares:" << endl;
     imprimirLista(listaPares);
 
-    cout << "Listas de Imares:" << endl;
+    cout << "Listas de Impares:" << endl;
     imprimirLista(listaImpares);
     
     return 0;
