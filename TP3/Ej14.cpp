@@ -71,12 +71,12 @@ void cargarAlumno(Nodo* &inicio)
 
         do
         {
-            cout << "Ingrese la nota obtenida en Matemática: ";
+            cout << "Ingrese la nota obtenida en Matematica: ";
             cin >> info.notas[0];
             cin.ignore();
             if(info.notas[0] < 1 || info.notas[0] > 10)
             {
-                cout << "Por favor ingrese una nota válida (1-10)." << endl;
+                cout << "Por favor ingrese una nota valida (1-10)." << endl;
             }
         } while(info.notas[0] < 1 || info.notas[0] > 10);
 
@@ -87,18 +87,18 @@ void cargarAlumno(Nodo* &inicio)
             cin.ignore();
             if(info.notas[1] < 1 || info.notas[1] > 10)
             {
-                cout << "Por favor ingrese una nota válida (1-10)." << endl;
+                cout << "Por favor ingrese una nota valida (1-10)." << endl;
             }
         } while(info.notas[1] < 1 || info.notas[1] > 10);
 
         do
         {
-            cout << "Ingrese la nota obtenida en Geografía: ";
+            cout << "Ingrese la nota obtenida en Geografia: ";
             cin >> info.notas[2];
             cin.ignore();
             if(info.notas[2] < 1 || info.notas[2] > 10)
             {
-                cout << "Por favor ingrese una nota válida (1-10)." << endl;
+                cout << "Por favor ingrese una nota valida (1-10)." << endl;
             }
         } while(info.notas[2] < 1 || info.notas[2] > 10);
 
