@@ -106,7 +106,7 @@ void incrementarStock(Nodo* inicio, Articulos articulo)
     Nodo* aux = inicio;
     while(aux != nullptr)
     {
-        if(aux -> dato.precio == codigoAux)
+        if(aux -> dato.codigo == codigoAux)
         {
             encontrado = true;
             cout << "Stock actual: " << aux -> dato.stock << endl;
@@ -117,6 +117,10 @@ void incrementarStock(Nodo* inicio, Articulos articulo)
             cout << "Stock actualizado: " << aux -> dato.stock << endl;
             break;
         }
+        else
+        {
+            aux = aux -> siguiente;
+        }
     }
 
     if(!encontrado)
@@ -125,11 +129,67 @@ void incrementarStock(Nodo* inicio, Articulos articulo)
     }
 }
 
+void imprimirLista(Nodo* inicio, Articulos articulo)
+{
+    Nodo* aux = inicio;
+    for(aux; aux != nullptr; aux = aux -> siguiente)
+    {
+        cout << "Codigo: " << aux -> dato.codigo << endl;
+        cout << "Descripcion: " << aux -> dato.descripcion << endl;
+        cout << "Precio: $" << aux -> dato.precio << endl;
+        cout << "Stock: " << aux -> dato.stock << endl;
+        cout << "----------" << endl;
+    }
+}
 
+void eliminarArticulo(Nodo* &inicio)
+{
+    Nodo* aux = inicio;
+    Nodo* aux2 = nullptr;
+
+    while (aux != nullptr)
+    {
+        if (aux -> dato.stock == 0)
+        {
+            if (aux2 == nullptr)
+            {
+                inicio = aux -> siguiente;
+            }
+            else
+            {
+                aux2 -> siguiente = aux -> siguiente;
+            }
+            Nodo* aEliminar = aux;
+            aux = aux -> siguiente;
+            delete aEliminar;
+            cout << "Articulo sin stock eliminado con exito." << endl;
+        }
+        else
+        {
+            aux2 = aux;
+            aux = aux->siguiente;
+        }
+    }
+}
 
 int main()
 {
     Nodo* inicio = nullptr;
+    Articulos articulo;
+
+    cargarArticulos(inicio);
+
+    incrementarPrecio(inicio, articulo);
+
+    incrementarStock(inicio, articulo);
+
+    cout << "Listado de articulos completa:" << endl;
+    imprimirLista(inicio, articulo);
+
+    eliminarArticulo(inicio);
+
+    cout << "Listado de articulos despues de eliminar los que no tienen stock:" << endl;
+    imprimirLista(inicio, articulo);
 
     return 0;
 }
