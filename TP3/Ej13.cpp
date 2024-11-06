@@ -11,6 +11,50 @@ ventas, ordenada por el mismo criterio. Utilizar un algoritmo destructivo (que r
 originales). Agregar las funciones auxiliares que sean necesarias.
 */
 
+struct Ventas
+{
+    int codigo;
+    int cantidadVendidas;
+};
+
+struct Nodo
+{
+    Ventas dato;
+    Nodo* siguiente;
+};
+
+Nodo* crearNodo(Ventas infoVenta)
+{
+    Nodo* nuevoNodo = new Nodo();
+    nuevoNodo -> dato = infoVenta;
+    nuevoNodo -> siguiente = nullptr;
+    return nuevoNodo;
+}
+
+void insertarOrdenado(Nodo* &inicio, Nodo* nuevoNodo)
+{
+    if (inicio == nullptr || inicio -> dato.codigo < nuevoNodo -> dato.codigo)
+    {
+        nuevoNodo -> siguiente = inicio;
+        inicio = nuevoNodo;
+    }
+    else
+    {
+        Nodo* aux = inicio;
+        while (aux -> siguiente != nullptr && aux -> siguiente -> dato.codigo < nuevoNodo -> dato.codigo)
+        {
+            aux = aux -> siguiente;
+        }
+        if(aux -> siguiente != nullptr)
+        {
+            nuevoNodo -> siguiente = aux -> siguiente;
+        }
+        aux -> siguiente = nuevoNodo;
+    }
+}
+
+
+
 int main()
 {
 
