@@ -140,7 +140,7 @@ void informarAprobados(Nodo* inicio)
         aux = aux -> siguiente;
     }
 
-    cout << "Cantidad de alumnos aprobados: " << cantidadAprobados++ << endl;
+    cout << "Cantidad de alumnos aprobados: " << cantidadAprobados << endl;
 }
 
 void informarPorcentajeAprobados(Nodo* inicio)
