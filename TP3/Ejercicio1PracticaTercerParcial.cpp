@@ -89,27 +89,24 @@ void eliminarEmpleado(Nodo* &inicio)
     Nodo* aEliminar;
     Nodo* aux = inicio;
 
-    for(aux; aux != nullptr; aux = aux -> siguiente)
+    while (inicio != nullptr && inicio->dato.sueldo < sueldoEliminar) // Si el nodo inicial es el que se va a eliminar
     {
-        if(aux -> dato.sueldo < sueldoEliminar) // Si el nodo inicial es el que se va a eliminar
+        aEliminar = inicio; // El nodo a eliminar es el inicial
+        inicio = inicio->siguiente; // El nodo inicial apunta al siguiente para modificar el inicio y no perderlo
+        delete aEliminar; // Se elimina el nodo
+    }
+
+    while(aux != nullptr && aux -> siguiente != nullptr)
+    {
+        if(aux -> siguiente -> dato.sueldo < sueldoEliminar)
         {
-            aEliminar = inicio; // El nodo a eliminar es el inicial
-            inicio = inicio -> siguiente; // El nodo inicial apunta al siguiente para modificar el inicio y no perderlo
-            aux = inicio; // El nodo auxiliar se mueve al siguiente nodo ya que se modificó el inicio
-            delete aEliminar; // Se elimina el nodo
+            aEliminar = aux -> siguiente; 
+            aux -> siguiente = aux -> siguiente -> siguiente;
+            delete aEliminar;
         }
         else
         {
-            if(aux -> siguiente != nullptr && aux -> siguiente -> dato.sueldo < sueldoEliminar) // Si no se eliminó el primero, se busca desde el segundo
-            {
-                aEliminar = aux -> siguiente; // El nodo a eliminar es el nodo siguiente a aux
-                aux -> siguiente = aEliminar -> siguiente; // El nodo siguiente a aux apunta al siguiente del nodo a eliminar
-                delete aEliminar; // Se elimina el nodo siguiente a aux
-            }
-            else
-            {
-                aux = aux -> siguiente;
-            }
+            aux = aux -> siguiente;
         }
     }
 }
@@ -158,6 +155,10 @@ void imprimirSueldo(Nodo* inicio)
         {
             cout << "Nombre: " << aux -> dato.nombre << endl;
             cout << "Sueldo: $" << aux -> dato.sueldo << endl;
+        }
+        else
+        {
+            cout << "No hay empleados con sueldo superior al promedio." << endl;
         }
         aux = aux -> siguiente;
     }
