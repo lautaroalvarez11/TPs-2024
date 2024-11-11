@@ -10,3 +10,9 @@ Descripción: Crea una lista para registrar productos, cada uno con los campos: 
 - Informar la cantidad de productos con precio superior a un valor ingresado por el usuario.
 - Recorrer la lista y mostrar todos los productos disponibles.
 */
+
+int main()
+{
+
+    return 0;
+}
