@@ -4,124 +4,48 @@ using namespace std;
 
 /*
 1)
-Dado el siguiente código:
-int* p = new int;
-int* q = p;
+Dado los siguientes punteros:
+int* a = new int;
+int* b = a;
 Escribir las instrucciones para:
-a) Almacenar el número 10 en el espacio de memoria apuntado por p.
-b) Imprimir el valor apuntado por p.
-c) Almacenar el número 20 en el espacio de memoria apuntado por q.
-d) Imprimir el valor apuntado por q y luego el apuntado por p.
+a) Almacenar el número 20 en el espacio de memoria apuntado por a.
+b) Imprimir el valor apuntado por a.
+c) Almacenar el número 15 en el espacio de memoria apuntado por b.
+d) Imprimir el valor apuntado por b y luego el apuntado por a. ¿Qué número imprimirá cada una y por qué?
 
 2)
-Dada una lista enlazada simple de números enteros, hacer una función que:
-Informe la cantidad de números pares en la lista.
-Informe la cantidad de números impares en la lista. Implementar la función con los parámetros que considere necesarios.
+Dado los siguientes structs:
+struct Direccion
+{
+    string calle;
+    int nro;
+    string localidad;
+};
+
+struct Paciente
+{
+    string nombre;
+    int dni;
+    Direccion direccion;
+};
+Escribir las instrucciones necesarias para:
+a) Declarar una variable de tipo puntero a Paciente y reservar memoria.
+b) Pedir al usuario que ingrese por teclado los siguientes datos del paciente:
+    - Número de DNI
+    - Nombre y apellido
+    - Dirección
+Almacenar los datos en el Paciente apuntado por el puntero declarado en el inciso anterior.
+c) El usuario se equivocó al ingresar el número de puerta (campo "nro"). Por lo tanto, hay que modificar este dato guardado
+en el paciente apuntado por el puntero anterior. El nuevo valor es 195.
+d) Imprimir todos los datos de los pacientes.
 
 3)
-Analizar el siguiente programa e indicar qué salida produce si se ingresan los números 10, 15, 12, 8, 6, 11, 9, 0:
-struct Nodo
-{
-    int valor;
-    Nodo* siguiente;
-};
-
-Nodo* insertarCircular(Nodo* fin, Nodo* nuevo)
-{
-    if(fin == nullptr)
-    {
-        nuevo->siguiente = nuevo;
-        return nuevo;
-    }
-    else
-    {
-        nuevo->siguiente = fin->siguiente;
-        fin->siguiente = nuevo;
-        return fin;
-    }
-}
-
-Nodo* cargarNumeros(Nodo* fin)
-{
-    int numero;
-    Nodo* nuevo;
-    cout << "Ingrese un numero (0 para terminar): ";
-    cin >> numero;
-    while(numero != 0)
-    {
-        nuevo = new Nodo;
-        nuevo->valor = numero;
-        fin = insertarCircular(fin, nuevo);
-        cout << "Ingrese un numero (0 para terminar): ";
-        cin >> numero;
-    }
-    return fin;
-}
-
-void imprimirCircular(Nodo* fin)
-{
-    if(fin != nullptr)
-    {
-        Nodo* aux = fin->siguiente;
-        do
-        {
-            cout << aux->valor << " ";
-            aux = aux->siguiente;
-        } while(aux != fin->siguiente);
-    }
-}
-
-int main()
-{
-    Nodo* fin = nullptr;
-    fin = cargarNumeros(fin);
-    imprimirCircular(fin);
-
-    return 0;
-}
-
-4)
-Una universidad quiere implementar un sistema de registro de estudiantes. Los datos de cada estudiante incluyen:
-- Número de matrícula, apellido, nombre, DNI.
-- Notas de tres asignaturas: Programación, Matemática y Física.
-El sistema requiere dos funcionalidades:
-A. Carga de datos: Realizar la carga de estudiantes en una lista enlazada simple, insertando al final.
-B. Reporte de aprobados: Contar e informar cuántos estudiantes aprobaron las tres materias (se aprueba con 7) y mostrar el porcentaje de aprobados.
-
-Estructuras sugeridas:
-struct Estudiante
-{
-    int matricula;
-    string nombre;
-    long dni;
-    float notas[3]; // 0: Programación; 1: Matemática; 2: Física
-};
-
-struct Nodo
-{
-    Estudiante estudiante;
-    Nodo* siguiente;
-};
-
-5)
-Se desea implementar un sistema para registrar productos en una tienda. Los datos de cada producto son:
-- Código, nombre, precio unitario, cantidad en stock.
-El sistema requiere las siguientes funcionalidades:
-A. Carga de productos: Insertar productos en una lista enlazada simple de forma ordenada, de mayor a menor precio.
-B. Inventario bajo: Informar cuántos productos tienen un stock inferior a 5 unidades.
-
-Estructuras sugeridas:
-struct Producto
-{
-    int codigo;
-    string nombre;
-    float precio;
-    int cantidadStock;
-};
-
-struct Nodo
-{
-    Producto producto;
-    Nodo* siguiente;
-};
+Una importante librería requiere implementar un sistema que le permita llevar un registro de los libros que posee a la venta y el stock de cada uno de ellos.
+Gran parte de los módulos para este sistema ya han sido desarrollados por un equipo. Solo faltarían implementar algunas funcionalidades, las cuales,
+te han sido asignadas y tendrás que desarrollarlas según los requerimientos que se describen a continuación:
+a) Carga de datos: Definir el struct a utilizar y el nodo correspondiente. De cada libro se tiene un código, título, precio y stock.
+Almacenar los datos en una lista enlazada simple insertando al final.
+b) Actualización de precios: El sistema debe permitir modificar el precio de un determinado libro.
+Para eso se solicitará por teclado el ingreso del código del libro y si existe, se debe solicitar el nuevo precio. Se debe mostrar al usuario un mensaje de "Importe actualizado con éxito" o "No se encontró el libro".
+c) Reporte: Informar la cantidad de libros cuyo stock supere las tres unidades y cuyo precio no supere los $25.000.
 */
