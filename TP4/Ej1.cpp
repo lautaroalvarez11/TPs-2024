@@ -22,4 +22,4 @@ int main()
     return 0;
 }
 
-// Respuesta: 21
+// Respuesta: 60
